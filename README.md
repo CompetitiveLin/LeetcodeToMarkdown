@@ -7,7 +7,7 @@
 ## 安装
 
 1. 在你的浏览器上安装 `Tampermonkey` 油猴插件；
-2. 点击[链接](https://gist.github.com/CompetitiveLin/f9ab0049558ddd0f4fa3e2eb15f1fdc5)，并点击链接中的 `raw` 按钮。
+2. 点击[链接](https://gist.github.com/CompetitiveLin/f9ab0049558ddd0f4fa3e2eb15f1fdc5)，并点击链接中的 `Raw` 按钮。
 
 ## 使用说明
 
