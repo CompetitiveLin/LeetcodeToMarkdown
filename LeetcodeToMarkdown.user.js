@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         HTML to Markdown in LeetCode
-// @namespace    https://github.com/CompetitiveLin/SaveAsMarkdown
-// @version      1.0.0
+// @name         HTML to Markdown in leetcode.cn
+// @namespace    https://github.com/CompetitiveLin/LeetcodeToMarkdown
+// @version      1.0.1
 // @description  LeetCode
 // @author       CompetitiveLin
 // @match        https://leetcode.cn/problems/*
@@ -10,7 +10,7 @@
 // @require      https://unpkg.com/turndown/dist/turndown.js
 // @require      https://raw.githubusercontent.com/eligrey/FileSaver.js/master/dist/FileSaver.js
 // @grant        GM_registerMenuCommand
-// @license 	 MIT
+// @license      MIT
 // ==/UserScript==
 
 (function () {
@@ -36,9 +36,9 @@
         content += "---\n\n";
         var contentDom = $('.content__1Y2H')[0].outerHTML;
         content += handleHtml(contentDom) + "\n\n---\n\n";
-        content += "\n\n```java\n";
-        var codeDom = $('div[class="view-lines monaco-mouse-cursor-text"]')[0].outerHTML;
-        content += handleCode(codeDom);
+        content += "\n\n```";
+        content += $('button[id="lang-select"]').text() + "\n";
+        content += $('input[name="code"]').val() + "\n";
         content += "```";
     }
 
@@ -74,18 +74,6 @@
             }
         });
         return turndownService.turndown(html)
-    }
-
-    function handleCode(html) {
-        turndownService.addRule('strikethrough', {
-            filter: ['div'],
-            replacement: function (content, node) {
-                // console.log(content);
-                content = content.replaceAll('\\', '');
-                return content + '\n' ;
-            }
-        });
-        return turndownService.turndown(html) + "\n"
     }
 
     // save content to local
