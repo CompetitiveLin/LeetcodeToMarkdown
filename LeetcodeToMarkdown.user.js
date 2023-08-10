@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HTML to Markdown in leetcode.cn
 // @namespace    https://github.com/CompetitiveLin/LeetcodeToMarkdown
-// @version      1.0.1
+// @version      1.0.2
 // @description  LeetCode
 // @author       CompetitiveLin
 // @match        https://leetcode.cn/problems/*
@@ -30,15 +30,15 @@
 	}
 
     function saveImpl() {
-        title = $('h4[data-cypress="QuestionTitle"]').text();
+        title = $('a[class="mr-2 text-label-1 dark:text-dark-label-1 hover:text-label-1 dark:hover:text-dark-label-1 text-lg font-medium"]').text();
         content = '#### ' + title + '\n\n';
-        content += '难度：' + $('[data-degree]').text() + "\n\n";
+        content += '难度：' + $('[class="mt-3 flex items-center space-x-4"]').find("*").eq(0).text() + "\n\n";
         content += "---\n\n";
-        var contentDom = $('.content__1Y2H')[0].outerHTML;
+        var contentDom = $('[class="xFUwe"]')[0].outerHTML;
         content += handleHtml(contentDom) + "\n\n---\n\n";
         content += "\n\n```";
-        content += $('button[id="lang-select"]').text() + "\n";
-        content += $('input[name="code"]').val() + "\n";
+        content += $('div[class="relative notranslate"]').find("button").find("div").find("div").eq(0).text() + "\n";
+        // content += $('div[class="view-lines monaco-mouse-cursor-text"]').val() + "\n";   // Code
         content += "```";
     }
 

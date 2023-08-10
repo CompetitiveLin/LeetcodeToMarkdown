@@ -1,5 +1,7 @@
 # LeetcodeToMarkdown
 
+- 2023-08-10 更新：为适应新版 Leetcode 界面更新了相应的 XPath 路径，暂时无法自动获取页面的代码
+
 ## 介绍
 
 此油猴脚本是一个针对 [LeetCode](https://leetcode.cn/problemset/all/) 题库，可将**题目**和**代码**以 `md` 为后缀的格式**保存至本地**，从而方便写 `Markdown` 题解的小工具。
