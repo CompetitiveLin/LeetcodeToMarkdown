@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HTML to Markdown in leetcode.cn
 // @namespace    https://github.com/CompetitiveLin/LeetcodeToMarkdown
-// @version      1.0.2
+// @version      1.0.3
 // @description  LeetCode
 // @author       CompetitiveLin
 // @match        https://leetcode.cn/problems/*
@@ -21,6 +21,8 @@
     const window = unsafeWindow;
     var content = '';
     var title = '';
+    var codetype = '';
+    var code = '';
 
     GM_registerMenuCommand("LeetCode Html To Markdown", save);
 
@@ -30,15 +32,16 @@
 	}
 
     function saveImpl() {
-        title = $('a[class="mr-2 text-label-1 dark:text-dark-label-1 hover:text-label-1 dark:hover:text-dark-label-1 text-lg font-medium"]').text();
+        title = $('a[class="no-underline hover:text-blue-s dark:hover:text-dark-blue-s truncate cursor-text whitespace-normal hover:!text-[inherit]"]').text();
         content = '#### ' + title + '\n\n';
-        content += '难度：' + $('[class="mt-3 flex items-center space-x-4"]').find("*").eq(0).text() + "\n\n";
+        content += '难度：' + $('div[class="flex gap-1"]').find("div").eq(0).text() + "\n\n";
         content += "---\n\n";
-        var contentDom = $('[class="xFUwe"]')[0].outerHTML;
+        var contentDom = $('[class="elfjS"]')[0].outerHTML;
         content += handleHtml(contentDom) + "\n\n---\n\n";
         content += "\n\n```";
-        content += $('div[class="relative notranslate"]').find("button").find("div").find("div").eq(0).text() + "\n";
-        // content += $('div[class="view-lines monaco-mouse-cursor-text"]').val() + "\n";   // Code
+        codetype = $('div[id="editor"]').find("button").eq(0).text();
+        content += codetype + "\n";
+        // content += $('div[class="view-lines monaco-mouse-cursor-text"]').val() + "\n";   // TODO: Obtain code from local storage
         content += "```";
     }
 
